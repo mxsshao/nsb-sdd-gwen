@@ -45,6 +45,8 @@
 #include "Gwen/Controls/Canvas.h"
 #include "Gwen/Align.h"
 
+#include "allegro5/allegro.h"
+
 // Enable the hook system (se Hook.h)
 #define GWEN_HOOKSYSTEM
 

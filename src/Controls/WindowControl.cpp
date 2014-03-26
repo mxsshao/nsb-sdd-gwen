@@ -21,11 +21,12 @@ GWEN_CONTROL_CONSTRUCTOR(WindowControl)
     m_Modal = NULL;
     m_bDeleteOnClose = false;
     m_TitleBar = new Dragger(this);
-    m_TitleBar->SetHeight(24);
+    m_TitleBar->SetHeight(22);
     m_TitleBar->SetPadding(Padding(0, 0, 0, 0));
-    m_TitleBar->SetMargin(Margin(0, 0, 0, 4));
+    m_TitleBar->SetMargin(Margin(0, 0, 0, 7));
     m_TitleBar->SetTarget(this);
     m_TitleBar->Dock(Pos::Top);
+	m_TitleBar->SetCursor(Gwen::CursorType::Finger);
     m_Title = new Label(m_TitleBar);
     m_Title->SetAlignment(Pos::Left|Pos::CenterV);
     m_Title->SetText("Window");
@@ -43,7 +44,9 @@ GWEN_CONTROL_CONSTRUCTOR(WindowControl)
     // ScrollControl?
     m_InnerPanel = new Base(this);
     m_InnerPanel->Dock(Pos::Fill);
-    GetResizer(8)->Hide();
+	m_InnerPanel->SetPadding(Gwen::Padding(0,0,0,0));
+    //GetResizer(8)->Hide();
+	GetResizer(8)->SetHeight(2);
     BringToFront();
     SetTabable(false);
     Focus();

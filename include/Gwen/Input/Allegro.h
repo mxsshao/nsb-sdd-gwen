@@ -13,9 +13,11 @@
 #include "Gwen/Controls/Canvas.h"
 
 #include <allegro5/allegro.h>
+#include "Gwen/Platform.h"
 
 namespace Gwen
 {
+	class Platform;
     namespace Input
     {
         class Allegro
@@ -32,6 +34,7 @@ namespace Gwen
             void Initialize(Gwen::Controls::Canvas* c)
             {
                 m_Canvas = c;
+				Gwen::Platform::g_display = al_get_current_display();
             }
 
             unsigned char TranslateKeyCode(int iKeyCode)

@@ -7,8 +7,6 @@
 #include "Gwen/Macros.h"
 #include "Gwen/Platform.h"
 
-#ifdef GWEN_ALLEGRO_PLATFORM
-
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_font.h>
@@ -21,8 +19,8 @@
 
 static Gwen::Input::Allegro g_GwenInput;
 static ALLEGRO_EVENT_QUEUE*     g_event_queue = NULL;
-static ALLEGRO_DISPLAY*         g_display = NULL;
 static Gwen::UnicodeString gs_ClipboardEmulator;
+ALLEGRO_DISPLAY* Gwen::Platform::g_display;
 
 static const ALLEGRO_SYSTEM_MOUSE_CURSOR g_CursorConversion[] =
 {
@@ -30,8 +28,8 @@ static const ALLEGRO_SYSTEM_MOUSE_CURSOR g_CursorConversion[] =
     ALLEGRO_SYSTEM_MOUSE_CURSOR_EDIT,       // IDC_IBEAM
     ALLEGRO_SYSTEM_MOUSE_CURSOR_RESIZE_N,   // IDC_SIZENS
     ALLEGRO_SYSTEM_MOUSE_CURSOR_RESIZE_E,   // IDC_SIZEWE
-    ALLEGRO_SYSTEM_MOUSE_CURSOR_RESIZE_N,   // IDC_SIZENWSE
-    ALLEGRO_SYSTEM_MOUSE_CURSOR_RESIZE_E,   // IDC_SIZENESW
+    ALLEGRO_SYSTEM_MOUSE_CURSOR_RESIZE_NW,   // IDC_SIZENWSE
+    ALLEGRO_SYSTEM_MOUSE_CURSOR_RESIZE_NE,   // IDC_SIZENESW
     ALLEGRO_SYSTEM_MOUSE_CURSOR_MOVE,       // IDC_SIZEALL
     ALLEGRO_SYSTEM_MOUSE_CURSOR_UNAVAILABLE, // IDC_NO
     ALLEGRO_SYSTEM_MOUSE_CURSOR_BUSY,       // IDC_WAIT
@@ -284,5 +282,3 @@ void Gwen::Platform::GetCursorPos(Gwen::Point& po)
     po.x = mouse.x+wx;
     po.y = mouse.y+wy;
 }
-
-#endif // GWEN_ALLEGRO_PLATFORM

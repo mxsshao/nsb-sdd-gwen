@@ -10,6 +10,7 @@
 
 #include "Gwen/Controls/Base.h"
 #include "Gwen/Controls/Label.h"
+#include "allegro5/allegro.h"
 
 namespace Gwen
 {
@@ -67,6 +68,7 @@ namespace Gwen
             }
 
             virtual void SetImage(const TextObject& strName, bool bCenter = false);
+			virtual void SetImage(ALLEGRO_BITMAP* bitmap, bool bCenter = false);
 
             virtual void SizeToContents();
             virtual void PostLayout(Skin::Base* pSkin);

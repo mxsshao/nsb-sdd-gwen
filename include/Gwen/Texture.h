@@ -11,6 +11,7 @@
 #include <string>
 
 #include "Gwen/BaseRender.h"
+#include "allegro5/allegro.h"
 
 namespace Gwen
 {
@@ -44,6 +45,13 @@ namespace Gwen
             name = str;
             Gwen::Debug::AssertCheck(render != NULL, "No renderer!");
             render->LoadTexture(this);
+        }
+
+		void Load(ALLEGRO_BITMAP* bitmap, Gwen::Renderer::Base* render)
+        {
+            name = "bitmap";
+            Gwen::Debug::AssertCheck(render != NULL, "No renderer!");
+            render->LoadTexture(this, bitmap);
         }
 
         void Release(Gwen::Renderer::Base* render)

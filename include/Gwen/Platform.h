@@ -10,49 +10,52 @@
 
 #include "Gwen/Structures.h"
 #include "Gwen/Events.h"
+#include "allegro5/allegro.h"
 
 namespace Gwen
 {
-    namespace Platform
+    class Platform
     {
+	public:
+		static ALLEGRO_DISPLAY* g_display;
         //
         // Do nothing for this many milliseconds
         //
-        GWEN_EXPORT void Sleep(unsigned int iMS);
+        static void Sleep(unsigned int iMS);
 
         //
         // Set the system cursor to iCursor
         // Cursors are defined in Structures.h
         //
-        GWEN_EXPORT void SetCursor(unsigned char iCursor);
+        static void SetCursor(unsigned char iCursor);
 
         //
         //
         //
-        GWEN_EXPORT void GetCursorPos(Gwen::Point& p);
-        GWEN_EXPORT void GetDesktopSize(int& w, int& h);
+        static void GetCursorPos(Gwen::Point& p);
+        static void GetDesktopSize(int& w, int& h);
 
         //
         // Used by copy/paste
         //
-        GWEN_EXPORT UnicodeString GetClipboardText();
-        GWEN_EXPORT bool          SetClipboardText(const UnicodeString& str);
+        static UnicodeString GetClipboardText();
+        static bool          SetClipboardText(const UnicodeString& str);
 
         //
         // Needed for things like double click
         //
-        GWEN_EXPORT float GetTimeInSeconds();
+        static float GetTimeInSeconds();
 
         //
         // System Dialogs ( Can return false if unhandled )
         //
-        GWEN_EXPORT bool FileOpen(const String& Name, const String& StartPath,
+        static bool FileOpen(const String& Name, const String& StartPath,
                                   const String& Extension, Gwen::Event::Handler* pHandler,
                                   Event::Handler::FunctionWithInformation fnCallback);
-        GWEN_EXPORT bool FileSave(const String& Name, const String& StartPath,
+        static bool FileSave(const String& Name, const String& StartPath,
                                   const String& Extension, Gwen::Event::Handler* pHandler,
                                   Event::Handler::FunctionWithInformation fnCallback);
-        GWEN_EXPORT bool FolderOpen(const String& Name, const String& StartPath,
+        static bool FolderOpen(const String& Name, const String& StartPath,
                                     Gwen::Event::Handler* pHandler,
                                     Event::Handler::FunctionWithInformation fnCallback);
 
@@ -60,16 +63,16 @@ namespace Gwen
         //
         // Window Creation
         //
-        GWEN_EXPORT void* CreatePlatformWindow(int x, int y, int w, int h,
+        static void* CreatePlatformWindow(int x, int y, int w, int h,
                                                const Gwen::String& strWindowTitle);
-        GWEN_EXPORT void DestroyPlatformWindow(void* pPtr);
-        GWEN_EXPORT void SetBoundsPlatformWindow(void* pPtr, int x, int y, int w, int h);
-        GWEN_EXPORT void MessagePump(void* pWindow, Gwen::Controls::Canvas* ptarget);
-        GWEN_EXPORT bool HasFocusPlatformWindow(void* pPtr);
-        GWEN_EXPORT void SetWindowMaximized(void* pPtr, bool bMaximized, Gwen::Point& pNewPos,
+        static void DestroyPlatformWindow(void* pPtr);
+        static void SetBoundsPlatformWindow(void* pPtr, int x, int y, int w, int h);
+        static void MessagePump(void* pWindow, Gwen::Controls::Canvas* ptarget);
+        static bool HasFocusPlatformWindow(void* pPtr);
+        static void SetWindowMaximized(void* pPtr, bool bMaximized, Gwen::Point& pNewPos,
                                             Gwen::Point& pNewSize);
-        GWEN_EXPORT void SetWindowMinimized(void* pPtr, bool bMinimized);
-    }
+        static void SetWindowMinimized(void* pPtr, bool bMinimized);
+    };
 
 }
 #endif // ifndef GWEN_PLATFORM_H

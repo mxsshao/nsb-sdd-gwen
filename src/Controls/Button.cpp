@@ -146,7 +146,22 @@ void Button::SetImage(const TextObject& strName, bool bCenter)
 
     m_Image->SetImage(strName);
     m_Image->SizeToContents();
-    m_Image->SetMargin(Margin(2, 0, 2, 0));
+    m_Image->SetMargin(Margin());
+    m_bCenterImage = bCenter;
+    // Ugh.
+    Padding padding = GetTextPadding();
+    padding.left = m_Image->Right()+2;
+    SetTextPadding(padding);
+}
+
+void Button::SetImage(ALLEGRO_BITMAP* bitmap, bool bCenter)
+{
+
+	m_Image = new ImagePanel(this);
+
+    m_Image->SetImage(bitmap);
+    m_Image->SizeToContents();
+    //m_Image->SetMargin(Margin(2, 0, 2, 0));
     m_bCenterImage = bCenter;
     // Ugh.
     Padding padding = GetTextPadding();

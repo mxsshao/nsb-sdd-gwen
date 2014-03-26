@@ -9,6 +9,7 @@
 #define GWEN_BASERENDER_H
 
 #include "Gwen/Structures.h"
+#include "allegro5/allegro.h"
 
 namespace Gwen
 {
@@ -64,6 +65,7 @@ namespace Gwen
             virtual void EndClip()      {}
 
             virtual void LoadTexture(Gwen::Texture* pTexture)   {}
+			virtual void LoadTexture(Gwen::Texture* pTexture, ALLEGRO_BITMAP* bitmap)   {}
             virtual void FreeTexture(Gwen::Texture* pTexture)   {}
 
             virtual void DrawTexturedRect(Gwen::Texture* pTexture, Gwen::Rect pTargetRect,

@@ -12,6 +12,7 @@
 #include "Gwen/Controls/Base.h"
 #include "Gwen/BaseRender.h"
 #include "Gwen/Texture.h"
+#include "allegro5/allegro.h"
 
 namespace Gwen
 {
@@ -46,6 +47,10 @@ namespace Gwen
             {
                 m_Texture.Load(imageName, GetSkin()->GetRender());
             }
+			virtual void SetImage(ALLEGRO_BITMAP* bitmap)
+            {
+				m_Texture.Load(bitmap, GetSkin()->GetRender());
+            }
 
             virtual TextObject& GetImage()
             {
@@ -69,8 +74,8 @@ namespace Gwen
 
             virtual void Render(Skin::Base* skin)
             {
-				skin->DrawColorDisplay(this, m_DrawColor);
-                /*skin->GetRender()->SetDrawColor(m_DrawColor);
+				//skin->DrawColorDisplay(this, m_DrawColor);
+                skin->GetRender()->SetDrawColor(m_DrawColor);
 
                 if (m_bStretch)
                 {
@@ -84,7 +89,7 @@ namespace Gwen
                                                         Gwen::Rect(0, 0,
                                                                    m_Texture.width,m_Texture.height),
                                                         m_uv[0], m_uv[1], m_uv[2], m_uv[3]);
-                }*/
+                }
             }
 
             virtual void SizeToContents()
