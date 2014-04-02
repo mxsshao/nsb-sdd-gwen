@@ -87,6 +87,8 @@ namespace Gwen
 
 			virtual void SetDisabled(bool active);
 
+			virtual bool SetBounds(int x, int y, int w, int h);
+
         public:
 
             Gwen::Event::Caller onPress;

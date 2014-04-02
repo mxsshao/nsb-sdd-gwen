@@ -160,13 +160,37 @@ void Button::SetImage(ALLEGRO_BITMAP* bitmap, bool bCenter)
 	m_Image = new ImagePanel(this);
 
     m_Image->SetImage(bitmap);
-    m_Image->SizeToContents();
-    //m_Image->SetMargin(Margin(2, 0, 2, 0));
+	m_Image->SetSize(m_Bounds.w, m_Bounds.h);
+    //m_Image->SizeToContents();
+    m_Image->SetMargin(Margin());
     m_bCenterImage = bCenter;
     // Ugh.
     Padding padding = GetTextPadding();
     padding.left = m_Image->Right()+2;
     SetTextPadding(padding);
+}
+
+bool Button::SetBounds(int x, int y, int w, int h)
+{
+	if (m_Bounds.x == x &&
+        m_Bounds.y == y &&
+        m_Bounds.w == w &&
+        m_Bounds.h == h)
+        return false;
+
+    Gwen::Rect oldBounds = GetBounds();
+    m_Bounds.x = x;
+    m_Bounds.y = y;
+    m_Bounds.w = w;
+    m_Bounds.h = h;
+    OnBoundsChanged(oldBounds);
+
+	if (m_Image)
+	{
+		m_Image->SetSize(m_Bounds.w, m_Bounds.h);
+	};
+
+    return true;
 }
 
 void Button::SetToggleState(bool b)
