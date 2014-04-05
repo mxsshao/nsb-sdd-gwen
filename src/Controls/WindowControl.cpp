@@ -23,7 +23,7 @@ GWEN_CONTROL_CONSTRUCTOR(WindowControl)
     m_TitleBar = new Dragger(this);
     m_TitleBar->SetHeight(22);
     m_TitleBar->SetPadding(Padding(0, 0, 0, 0));
-    m_TitleBar->SetMargin(Margin(0, 0, 0, 7));
+    m_TitleBar->SetMargin(Margin(0, 0, 0, 6));
     m_TitleBar->SetTarget(this);
     m_TitleBar->Dock(Pos::Top);
 	m_TitleBar->SetCursor(Gwen::CursorType::Finger);
@@ -40,6 +40,7 @@ GWEN_CONTROL_CONSTRUCTOR(WindowControl)
     m_CloseButton->SetTabable(false);
     m_CloseButton->SetName("closeButton");
     m_CloseButton->SetWindow(this);
+	m_CloseButton->SetMargin(Margin(0, -1, 0, 0));
     // Create a blank content control, dock it to the top - Should this be a
     // ScrollControl?
     m_InnerPanel = new Base(this);
