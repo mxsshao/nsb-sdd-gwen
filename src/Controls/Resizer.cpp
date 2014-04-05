@@ -98,6 +98,15 @@ void Resizer::OnMouseMoved(int x, int y, int /*deltaX*/, int /*deltaY*/)
         m_HoldPos.y -= diff;
     }
 
+	if (pBounds.w > al_get_display_width(al_get_current_display()))
+	{
+		pBounds.w = al_get_display_width(al_get_current_display());
+	}
+	if (pBounds.h > al_get_display_height(al_get_current_display()))
+	{
+		pBounds.h = al_get_display_height(al_get_current_display());
+	}
+
     m_pTarget->SetBounds(pBounds);
     onResize.Call(this);
 }

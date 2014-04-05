@@ -116,6 +116,7 @@ namespace Gwen
 
                         m_MouseX = event.mouse.x;
                         m_MouseY = event.mouse.y;
+
                         return m_Canvas->InputMouseMoved(m_MouseX, m_MouseY, dx, dy);
                     }
 
