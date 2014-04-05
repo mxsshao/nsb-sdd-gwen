@@ -88,6 +88,10 @@ namespace Gwen
             {
                 return m_Parent;
             }
+			virtual Controls::Base* GetActualParent() const
+            {
+                return m_ActualParent;
+            }
 
             virtual Controls::Canvas* GetCanvas();
 

@@ -15,7 +15,7 @@ GWEN_CONTROL_CONSTRUCTOR(Resizer)
 {
     m_iResizeDir = Pos::Left;
     SetMouseInputEnabled(true);
-    SetSize(6, 6);
+    SetSize(4, 4);
 }
 
 void Resizer::OnMouseMoved(int x, int y, int /*deltaX*/, int /*deltaY*/)

@@ -17,6 +17,7 @@
 #include "Gwen/Controls/ResizableControl.h"
 #include "Gwen/Controls/Modal.h"
 #include "Gwen/Controls/WindowButtons.h"
+#include "Gwen/Controls/ScrollControl.h"
 #include "Gwen/Skin.h"
 
 
@@ -62,12 +63,16 @@ namespace Gwen
 
             Gwen::Event::Caller onWindowClosed;
 
+			void MakeScroll();
+			Gwen::Controls::ScrollControl* GetScroll() {return m_Scroll;};
 
         protected:
 
             Gwen::ControlsInternal::Dragger*    m_TitleBar;
             Gwen::Controls::Label*              m_Title;
             Gwen::Controls::WindowCloseButton*  m_CloseButton;
+
+			Gwen::Controls::ScrollControl* m_Scroll;
 
             bool m_bDeleteOnClose;
 

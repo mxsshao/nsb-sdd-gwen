@@ -11,6 +11,7 @@
 #include "Gwen/Controls/Modal.h"
 
 
+
 using namespace Gwen;
 using namespace Gwen::Controls;
 using namespace Gwen::ControlsInternal;
@@ -43,10 +44,11 @@ GWEN_CONTROL_CONSTRUCTOR(WindowControl)
 	m_CloseButton->SetMargin(Margin(0, -1, 0, 0));
     // Create a blank content control, dock it to the top - Should this be a
     // ScrollControl?
-    m_InnerPanel = new Base(this);
-    m_InnerPanel->Dock(Pos::Fill);
+
+	m_InnerPanel = new Base(this);
+	m_InnerPanel->Dock(Pos::Fill);
 	m_InnerPanel->SetPadding(Gwen::Padding(0,0,0,0));
-    //GetResizer(8)->Hide();
+	
 	GetResizer(8)->SetHeight(2);
     BringToFront();
     SetTabable(false);
@@ -60,6 +62,15 @@ GWEN_CONTROL_CONSTRUCTOR(WindowControl)
 WindowControl::~WindowControl()
 {
     DestroyModal();
+}
+
+void WindowControl::MakeScroll()
+{
+	delete(m_InnerPanel);
+	m_Scroll = new Gwen::Controls::ScrollControl(this);
+	m_InnerPanel = m_Scroll;
+	m_InnerPanel->Dock(Pos::Fill);
+	m_InnerPanel->SetPadding(Gwen::Padding(0,0,0,0));
 }
 
 void WindowControl::MakeModal(bool bDrawBackground)

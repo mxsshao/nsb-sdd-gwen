@@ -66,6 +66,7 @@ namespace Gwen
 
             virtual void Clear();
 
+			Gwen::Event::Caller onResize;
         protected:
 
             virtual bool ContentsAreDocked();

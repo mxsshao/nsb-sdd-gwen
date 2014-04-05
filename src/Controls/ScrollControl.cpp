@@ -30,7 +30,7 @@ GWEN_CONTROL_CONSTRUCTOR(ScrollControl)
     m_HorizontalScrollBar->SetNudgeAmount(30);
     m_InnerPanel = new Base(this);
     m_InnerPanel->SetPos(0, 0);
-    m_InnerPanel->SetMargin(Margin(5, 5, 5, 5));
+    m_InnerPanel->SetMargin(Margin(0, 0, 0, 0));
     m_InnerPanel->SendToBack();
     m_InnerPanel->SetMouseInputEnabled(true);
     m_bAutoHideBars = true;
@@ -180,9 +180,13 @@ void ScrollControl::UpdateScrollBars()
                                                     ? 0 : m_HorizontalScrollBar->Height()));
 
     if (m_bCanScrollV)
+	{
         SetVScrollRequired(hPercent >= 1);
+	}
     else
+	{
         m_VerticalScrollBar->SetHidden(true);
+	}
 
     if (m_bCanScrollH)
         SetHScrollRequired(wPercent >= 1);
@@ -215,6 +219,7 @@ void ScrollControl::UpdateScrollBars()
     }
 
     m_InnerPanel->SetPos(newInnerPanelPosX, newInnerPanelPosY);
+	onResize.Call(this);
 }
 
 void ScrollControl::SetVScrollRequired(bool req)

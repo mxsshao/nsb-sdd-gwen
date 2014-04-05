@@ -36,7 +36,7 @@ namespace Gwen
 
             ALLEGRO_FONT* afont = al_load_font(fontName.c_str(),
                                                font->realsize,
-                                               ALLEGRO_TTF_NO_KERNING);
+                                               0);
             font->data = afont;
         }
 
