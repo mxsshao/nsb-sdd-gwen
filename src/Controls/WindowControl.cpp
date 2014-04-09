@@ -136,6 +136,7 @@ void WindowControl::RenderUnder(Skin::Base* skin)
 void WindowControl::DisableMovement()
 {
 	m_TitleBar->SetDoMove(false);
+	m_TitleBar->SetCursor(Gwen::CursorType::Normal);
 }
 
 void WindowControl::SetTitle(Gwen::UnicodeString title)

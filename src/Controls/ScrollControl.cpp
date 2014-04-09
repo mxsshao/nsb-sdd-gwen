@@ -21,7 +21,7 @@ GWEN_CONTROL_CONSTRUCTOR(ScrollControl)
     m_VerticalScrollBar = new VerticalScrollBar(this);
     m_VerticalScrollBar->Dock(Pos::Right);
     m_VerticalScrollBar->onBarMoved.Add(this, &ScrollControl::VBarMoved);
-    m_VerticalScrollBar->SetNudgeAmount(30);
+    m_VerticalScrollBar->SetNudgeAmount(45);
     m_bCanScrollV = true;
     m_HorizontalScrollBar = new HorizontalScrollBar(this);
     m_HorizontalScrollBar->Dock(Pos::Bottom);
