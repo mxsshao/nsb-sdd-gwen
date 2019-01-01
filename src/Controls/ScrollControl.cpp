@@ -10,6 +10,8 @@
 #include "Gwen/Controls/VerticalScrollBar.h"
 #include "Gwen/Controls/HorizontalScrollBar.h"
 #include "Gwen/Utility.h"
+#include "Gwen/InputHandler.h"
+#include "Gwen/Platform.h"
 
 using namespace Gwen;
 using namespace Gwen::Controls;
@@ -27,7 +29,7 @@ GWEN_CONTROL_CONSTRUCTOR(ScrollControl)
     m_HorizontalScrollBar->Dock(Pos::Bottom);
     m_HorizontalScrollBar->onBarMoved.Add(this, &ScrollControl::HBarMoved);
     m_bCanScrollH = true;
-    m_HorizontalScrollBar->SetNudgeAmount(30);
+    m_HorizontalScrollBar->SetNudgeAmount(120);
     m_InnerPanel = new Base(this);
     m_InnerPanel->SetPos(0, 0);
     m_InnerPanel->SetMargin(Margin(0, 0, 0, 0));
@@ -78,7 +80,8 @@ bool ScrollControl::OnMouseWheeled(int iDelta)
         if (m_VerticalScrollBar->SetScrolledAmount(m_VerticalScrollBar->GetScrolledAmount()-
                                                    m_VerticalScrollBar->GetNudgeAmount()*
                                                    ((float)iDelta/60.0f), true))
-            return true;
+			
+			return true;
     }
 
     if (CanScrollH() && m_HorizontalScrollBar->Visible())

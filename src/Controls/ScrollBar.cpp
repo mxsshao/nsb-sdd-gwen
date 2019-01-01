@@ -68,6 +68,7 @@ bool BaseScrollBar::SetScrolledAmount(float amount, bool forceUpdate)
 
     m_fScrolledAmount = amount;
     Invalidate();
-    BarMovedNotification();
+    onBarMoved.Call(this);
+
     return true;
 }

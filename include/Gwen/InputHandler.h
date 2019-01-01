@@ -79,6 +79,7 @@ namespace Gwen
         bool GWEN_EXPORT HandleAccelerator(Controls::Base* pCanvas, Gwen::UnicodeChar chr);
 
         // Send input to canvas for study
+		void GWEN_EXPORT UpdateHoveredControl(Controls::Base* pInCanvas);
         void GWEN_EXPORT OnMouseMoved(Controls::Base* pCanvas, int x, int y, int deltaX,
                                       int deltaY);
         bool GWEN_EXPORT OnMouseClicked(Controls::Base* pCanvas, int iButton, bool bDown);

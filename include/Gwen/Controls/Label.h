@@ -142,12 +142,14 @@ namespace Gwen
 
             virtual void OnBoundsChanged(Gwen::Rect oldChildBounds);
 
+			ControlsInternal::Text*     m_Text;
+
         protected:
 
             virtual void OnTextChanged() {}
 
             Gwen::Font*                 m_CreatedFont;
-            ControlsInternal::Text*     m_Text;
+            
             int m_iAlign;
 
         };

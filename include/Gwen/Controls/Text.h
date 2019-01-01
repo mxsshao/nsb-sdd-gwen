@@ -88,9 +88,11 @@ namespace Gwen
             virtual int   GetCharPosOnLine(int i);
             virtual unsigned NumLines();
 
+			virtual void RefreshSizeWrap();
+
         private:
 
-            virtual void RefreshSizeWrap();
+            
 
             Gwen::TextObject m_String;
             Gwen::Font*         m_Font;

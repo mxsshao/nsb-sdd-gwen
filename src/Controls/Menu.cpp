@@ -67,7 +67,7 @@ MenuItem* Menu::AddItem(const TextObject& strName,
                         const TextObject& strAccelerator)
 {
     MenuItem* pItem = new MenuItem(this);
-    pItem->SetPadding(Padding(2, 4, 4, 4));
+    pItem->SetPadding(Padding(0, 4, 0, 4));
     pItem->SetText(strName);
     pItem->SetImage(strIconName);
     pItem->SetAccelerator(strAccelerator);
@@ -77,10 +77,10 @@ MenuItem* Menu::AddItem(const TextObject& strName,
 
 void Menu::OnAddItem(MenuItem* item)
 {
-    item->SetTextPadding(Padding(IconMarginDisabled() ? 0 : 24, 0, 16, 0));
+    //item->SetTextPadding(Padding(0,4,0,4));
     item->Dock(Pos::Top);
     item->SizeToContents();
-    item->SetAlignment(Pos::CenterV|Pos::Left);
+    item->SetAlignment(Pos::Center);
     item->onHoverEnter.Add(this, &Menu::OnHoverItem);
     
     // Do this here - after Top Docking these values mean nothing in layout

@@ -37,6 +37,7 @@ void Dragger::OnMouseClickLeft(int x, int y, bool bDown)
     {
         m_bDepressed = false;
         Gwen::MouseFocus = NULL;
+		m_Parent->OnMouseClickLeft(x, y, bDown);
     }
 }
 

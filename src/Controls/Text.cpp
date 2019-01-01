@@ -82,9 +82,9 @@ void Text::Render(Skin::Base* skin)
         return;
 
     if (m_ColorOverride.a == 0)
-        skin->GetRender()->SetDrawColor(m_Color);
+		skin->GetRender()->SetDrawColor(m_Color);
     else
-        skin->GetRender()->SetDrawColor(m_ColorOverride);
+		skin->GetRender()->SetDrawColor(m_ColorOverride);
 
     skin->GetRender()->RenderText(GetFont(), Gwen::Point(GetPadding().left,
                                                          GetPadding().top),
@@ -184,7 +184,8 @@ void Text::RefreshSize()
 {
     if (m_bWrap)
         return RefreshSizeWrap();
-
+	else
+	{
     if (!GetFont())
     {
         Debug::AssertCheck(0, "Text::RefreshSize() - No Font!!\n");
@@ -208,6 +209,7 @@ void Text::RefreshSize()
     SetSize(p.x, p.y);
     InvalidateParent();
     Invalidate();
+	}
 }
 
 void SplitWords(const Gwen::UnicodeString& s, wchar_t delim,
@@ -282,9 +284,9 @@ void Text::RefreshSizeWrap()
         // Does adding this word drive us over the width?
         {
             strLine += (*it);
-            Gwen::Point p = GetSkin()->GetRender()->MeasureText(GetFont(), strLine);
+			float p = GetSkin()->GetRender()->MeasureText(GetFont(), strLine).x;
 
-            if (p.x > Width())
+            if (p >= Width())
             {
                 bFinishLine = true; bWrapped = true;
             }
@@ -298,12 +300,19 @@ void Text::RefreshSizeWrap()
         {
             Text* t = new Text(this);
             t->SetFont(GetFont());
-            t->SetString(strLine.substr(0, strLine.length()-(*it).length()));
+			t->SetString(strLine.substr(0, strLine.length()-(*it).length()));
             t->RefreshSize();
-            t->SetPos(x, y);
+            t->SetPos(0, y);
             m_Lines.push_back(t);
             // newline should start with the word that was too big
-            strLine = *it;
+			if ((*it).c_str() [0] == L'\n')
+			{
+				strLine.clear();
+			}
+			else
+			{
+				strLine = *it;
+			}
             // Position the newline
             y += pFontSize.y;
             x = 0;
@@ -311,10 +320,15 @@ void Text::RefreshSizeWrap()
         }
     }
 
+	for (TextLines::iterator it = m_Lines.begin(); it != m_Lines.end(); ++it)
+	{
+		(*it)->SetTextColor(m_Color);
+	}
+
     // Size to children height and parent width
     {
         Point childsize = ChildrenSize();
-        SetSize(w, childsize.y);
+        SetSize(w, y);
     }
     InvalidateParent();
     Invalidate();

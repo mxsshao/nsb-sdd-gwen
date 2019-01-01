@@ -23,6 +23,17 @@ namespace Gwen
     {
         class GWEN_EXPORT ScrollControl : public Base
         {
+		protected:
+
+            virtual bool ContentsAreDocked();
+
+            bool m_bCanScrollH;
+            bool m_bCanScrollV;
+
+            bool m_bAutoHideBars;
+
+            Controls::BaseScrollBar* m_VerticalScrollBar;
+            Controls::BaseScrollBar* m_HorizontalScrollBar;
         public:
 
             GWEN_CONTROL(ScrollControl, Base);
@@ -66,18 +77,9 @@ namespace Gwen
 
             virtual void Clear();
 
+			Controls::BaseScrollBar* GetHScroll() {return m_HorizontalScrollBar;};
+
 			Gwen::Event::Caller onResize;
-        protected:
-
-            virtual bool ContentsAreDocked();
-
-            bool m_bCanScrollH;
-            bool m_bCanScrollV;
-
-            bool m_bAutoHideBars;
-
-            Controls::BaseScrollBar* m_VerticalScrollBar;
-            Controls::BaseScrollBar* m_HorizontalScrollBar;
         };
 
 

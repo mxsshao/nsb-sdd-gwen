@@ -15,6 +15,7 @@ using namespace Gwen::ControlsInternal;
 
 GWEN_CONTROL_CONSTRUCTOR(ResizableControl)
 {
+	m_bDepressed = false;
     m_bResizable = true;
     m_MinimumSize = Gwen::Point(5, 5);
     m_bClampMovement = false;
@@ -111,5 +112,6 @@ bool ResizableControl::SetBounds(int x, int y, int w, int h)
 void ResizableControl::OnResizedInternal(Controls::Base* /*pControl*/)
 {
     onResize.Call(this);
+	m_bDepressed = true;
     OnResized();
 }

@@ -257,5 +257,8 @@ bool Canvas::InputMouseWheel(int val)
     if (Gwen::HoveredControl->GetCanvas() != this)
         return false;
 
-    return Gwen::HoveredControl->OnMouseWheeled(val);
+    Gwen::HoveredControl->OnMouseWheeled(val);
+	Gwen::Input::UpdateHoveredControl(this);
+	Gwen::HoveredControl->UpdateCursor();
+	return true;
 }

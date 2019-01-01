@@ -156,9 +156,16 @@ void Button::SetImage(const TextObject& strName, bool bCenter)
 
 void Button::SetImage(ALLEGRO_BITMAP* bitmap, bool bCenter)
 {
-
-	m_Image = new ImagePanel(this);
-
+	/*if (m_Image)
+        {
+            delete m_Image;
+            m_Image = NULL;
+        }
+*/
+	if (!m_Image)
+	{
+        m_Image = new ImagePanel(this);
+	}
     m_Image->SetImage(bitmap);
 	m_Image->SetSize(m_Bounds.w, m_Bounds.h);
     //m_Image->SizeToContents();

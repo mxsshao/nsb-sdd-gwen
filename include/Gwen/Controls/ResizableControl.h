@@ -56,12 +56,23 @@ namespace Gwen
             }
 
             Event::Caller onResize;
+			Event::Caller onResizeUp;
 
             virtual ControlsInternal::Resizer* GetResizer(int iResizer)
             {
                 return m_Resizer[iResizer];
             }
 
+			bool m_bDepressed;
+
+			virtual void OnMouseClickLeft(int x, int y, bool bDown)
+			{
+				if (!bDown && m_bDepressed)
+				{
+					onResizeUp.Call(this);
+					m_bDepressed = false;
+				}
+			}
         protected:
 
             void OnResizedInternal(Controls::Base* pControl);

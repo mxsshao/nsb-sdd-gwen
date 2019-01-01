@@ -70,7 +70,7 @@ enum
 };
 
 
-void UpdateHoveredControl(Controls::Base* pInCanvas)
+void Gwen::Input::UpdateHoveredControl(Controls::Base* pInCanvas)
 {
     Controls::Base* pHovered = pInCanvas->GetControlAt(g_MousePosition.x, g_MousePosition.y);
 
@@ -225,9 +225,9 @@ bool Gwen::Input::OnMouseClicked(Controls::Base* pCanvas, int iMouseButton, bool
 
     // Double click.
     //! @todo Shouldn't double click if mouse has moved significantly
-    bool bIsDoubleClick = false;
+    //bool bIsDoubleClick = false;
 
-    if (bDown
+    /*if (bDown
         && g_pntLastClickPos.x == g_MousePosition.x
         && g_pntLastClickPos.y == g_MousePosition.y
         && (Gwen::Platform::GetTimeInSeconds()-g_fLastClickTime[iMouseButton]) < DOUBLE_CLICK_SPEED)
@@ -239,7 +239,7 @@ bool Gwen::Input::OnMouseClicked(Controls::Base* pCanvas, int iMouseButton, bool
     {
         g_fLastClickTime[ iMouseButton ] = Gwen::Platform::GetTimeInSeconds();
         g_pntLastClickPos = g_MousePosition;
-    }
+    }*/
 
     if (bDown)
     {
@@ -250,7 +250,6 @@ bool Gwen::Input::OnMouseClicked(Controls::Base* pCanvas, int iMouseButton, bool
         }
     }
 
-    Gwen::HoveredControl->UpdateCursor();
 
     // This tells the child it has been touched, which
     // in turn tells its parents, who tell their parents.
@@ -281,17 +280,19 @@ bool Gwen::Input::OnMouseClicked(Controls::Base* pCanvas, int iMouseButton, bool
             return true;
         }
 
-        if (bIsDoubleClick)
+        /*if (bIsDoubleClick)
             Gwen::HoveredControl->OnMouseDoubleClickLeft(g_MousePosition.x, g_MousePosition.y);
-        else
+        else*/
             Gwen::HoveredControl->OnMouseClickLeft(g_MousePosition.x, g_MousePosition.y, bDown);
-
+			UpdateHoveredControl(pCanvas);
+			if (Gwen::HoveredControl)
+				Gwen::HoveredControl->UpdateCursor();
         return true;
 
     case 1:
-        if (bIsDoubleClick)
+        /*if (bIsDoubleClick)
             Gwen::HoveredControl->OnMouseDoubleClickRight(g_MousePosition.x, g_MousePosition.y);
-        else
+        else*/
             Gwen::HoveredControl->OnMouseClickRight(g_MousePosition.x, g_MousePosition.y, bDown);
 
         return true;
